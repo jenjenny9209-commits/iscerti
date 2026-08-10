@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISC | International Standard Certification · EMC·전기안전·통신·신뢰성 시험인증</title>
+<meta name="description" content="ISC(International Standard Certification) — 전기안전·전자파적합성(EMC)·유무선통신·신뢰성·의료기기·해외인증 시험인증 컨설팅. 제품 사양서만 주시면 필수 항목·예상 비용·일정을 먼저 정리해 드립니다.">
+<meta name="keywords" content="ISC,국제표준인증,EMC시험,전기안전인증,전자파적합성,유무선통신인증,신뢰성시험,의료기기인증,해외인증,SAR,시험성적서,KC인증,KOLAS">
+<link rel="canonical" href="https://jenjenny9209-commits.github.io/iscerti/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ISC | International Standard Certification">
+<meta property="og:description" content="EMC·전기안전·유무선통신·신뢰성·의료기기·해외인증 — 시험 항목 선정부터 성적서 발급까지 원스톱">
+<meta property="og:url" content="https://jenjenny9209-commits.github.io/iscerti/">
+<meta property="og:image" content="https://jenjenny9209-commits.github.io/iscerti/assets/isc-logo-3d.png">
+<link rel="icon" type="image/png" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/isc-logo-3d-256.png">
+
+<!-- Tailwind (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Pretendard (Korean/UI) + IBM Plex Mono (표준코드·수치·계기 라벨) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Iconify (Solar set) -->
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Pretendard','system-ui','sans-serif'],
+          mono: ['"IBM Plex Mono"','ui-monospace','monospace'],
+        },
+        colors: {
+          ink:      '#070A12',
+          ink2:     '#0A0F1A',
+          panel:    '#0C121E',
+          card:     '#101929',
+          card2:    '#0D1421',
+          txt:      '#EAF1FA',
+          muted:    '#93A2B8',
+          faint:    '#5E6E85',
+          brand:    '#1E7CE0',
+          brandbr:  '#4BA0F5',
+          branddp:  '#0A5FC0',
+          limit:    '#F2635C',
+        },
+        maxWidth: { '65ch': '65ch' },
+      },
+    },
+  }
+</script>
+
+<style>
+  :root{
+    --ink:#070A12; --panel:#0C121E; --card:#101929; --line:rgba(148,163,184,.14);
+    --line2:rgba(148,163,184,.22); --txt:#EAF1FA; --muted:#93A2B8; --faint:#5E6E85;
+    --brand:#1E7CE0; --brandbr:#4BA0F5; --branddp:#0A5FC0; --limit:#F2635C;
+  }
+  html,body{ background:var(--ink); color:var(--txt); }
+  *{ word-break:keep-all; }
+  ::selection{ background:rgba(30,124,224,.32); color:#fff; }
+
+  /* thin scrollbar */
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:#070A12; }
+  ::-webkit-scrollbar-thumb{ background:#1c2735; border-radius:20px; border:2px solid #070A12; }
+  ::-webkit-scrollbar-thumb:hover{ background:#28384c; }
+
+  /* ambient gradient-mesh field */
+  .mesh{ position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(60rem 40rem at 82% -8%, rgba(30,124,224,.20), transparent 60%),
+      radial-gradient(48rem 40rem at -6% 12%, rgba(10,95,192,.14), transparent 60%),
+      radial-gradient(70rem 60rem at 50% 118%, rgba(30,124,224,.10), transparent 60%);
+  }
+  /* fixed hairline grid backdrop (계기 느낌) */
+  .gridfield{ position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.5;
+    background-image:linear-gradient(rgba(148,163,184,.045) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(148,163,184,.045) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 22%, #000 0%, transparent 78%);
+  }
+  /* grain overlay */
+  .grain{ position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  /* glass panel */
+  .glass{ background:rgba(16,25,41,.55); backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid var(--line); box-shadow:inset 0 1px 0 rgba(255,255,255,.06); }
+
+  /* mono eyebrow */
+  .kicker{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--brandbr); display:inline-flex; align-items:center; gap:8px; }
+  .kicker .ix{ color:var(--faint); }
+
+  /* brand mark (dark-safe SVG-ish lockup) */
+  .logo{ font-family:'IBM Plex Mono',monospace; font-weight:700; letter-spacing:.04em;
+    position:relative; line-height:1; color:#fff; }
+  .logo .ring{ position:absolute; top:-.62em; left:.02em; width:.44em; height:.44em; border-radius:50%;
+    border:.14em solid var(--brand); box-shadow:0 0 0 .04em rgba(7,10,18,1); }
+
+  /* CTA — magnetic */
+  .cta{ transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s, background .3s; }
+  .cta:hover{ transform:translateY(-2px) scale(1.015); }
+  .cta:active{ transform:scale(.985); }
+  .cta .arw{ transition:transform .35s cubic-bezier(.16,1,.3,1); }
+  .cta:hover .arw{ transform:translateX(4px); }
+
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+    transition-delay:calc(var(--i,0) * 70ms); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} }
+
+  /* marquee ticker */
+  .tkrow{ display:flex; gap:10px; width:max-content; animation:tk 26s linear infinite; }
+  .tkwrap:hover .tkrow{ animation-play-state:paused; }
+  @keyframes tk{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* float */
+  @keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .floaty{ animation:floaty 6s ease-in-out infinite; }
+
+  /* EMI scope */
+  .scope-svg .trace{ fill:none; stroke:var(--brandbr); stroke-width:1.9; stroke-linejoin:round;
+    stroke-linecap:round; filter:drop-shadow(0 0 6px rgba(75,160,245,.45));
+    stroke-dasharray:1500; stroke-dashoffset:1500; animation:draw 2.6s cubic-bezier(.5,0,.2,1) .2s forwards; }
+  .scope-svg .fill{ fill:url(#tg); opacity:0; animation:fadein 1.4s ease 1.8s forwards; }
+  .scope-svg .peak{ fill:var(--brandbr); opacity:0; animation:pop .5s ease forwards; }
+  .scope-svg .peak.p1{ animation-delay:1.5s } .scope-svg .peak.p2{ animation-delay:1.9s }
+  .scope-svg .sweep{ animation:sweep 3.2s cubic-bezier(.5,0,.2,1) infinite; }
+  @keyframes draw{ to{stroke-dashoffset:0} }
+  @keyframes fadein{ to{opacity:1} }
+  @keyframes pop{ to{opacity:1} }
+  @keyframes sweep{ 0%{transform:translateX(0);opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{transform:translateX(520px);opacity:0} }
+  @keyframes blip{ 0%,100%{opacity:.4} 50%{opacity:1} }
+  .blip{ animation:blip 1.6s ease-in-out infinite; }
+
+  /* field / card hover edge */
+  .edge{ position:relative; transition:transform .4s cubic-bezier(.16,1,.3,1), border-color .3s, background .3s; }
+  .edge:hover{ transform:translateY(-4px); border-color:rgba(75,160,245,.45); }
+  .edge::after{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+    background:radial-gradient(24rem 16rem at var(--mx,50%) var(--my,0%), rgba(30,124,224,.12), transparent 60%);
+    opacity:0; transition:opacity .4s; }
+  .edge:hover::after{ opacity:1; }
+
+  /* chips */
+  .chip{ transition:all .18s ease; }
+  .chip[aria-pressed="true"]{ background:var(--brand); border-color:var(--brand); color:#fff; box-shadow:0 6px 18px -8px rgba(30,124,224,.8); }
+
+  /* faq */
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1); }
+  .faq-item.open .faq-q .pm{ transform:rotate(45deg); }
+  .faq-q .pm{ transition:transform .3s ease; }
+
+  details summary::-webkit-details-marker{ display:none; }
+</style>
+</head>
+
+<body class="font-sans antialiased selection:text-white">
+<div class="mesh"></div>
+<div class="gridfield"></div>
+<div class="grain"></div>
+
+<!-- ===================== NAV ===================== -->
+<header class="fixed top-0 inset-x-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-3">
+    <div class="glass rounded-2xl h-[62px] px-4 sm:px-5 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 shrink-0">
+        <span class="logo text-[21px]"><span class="ring"></span>ISC</span>
+        <span class="hidden sm:block h-6 w-px bg-white/10"></span>
+        <span class="hidden sm:block font-mono text-[10px] tracking-[.18em] text-faint leading-tight uppercase">International<br>Standard Cert.</span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-1 text-[14px] text-muted">
+        <a href="#fields"  class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">인증분야</a>
+        <a href="#why"     class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">왜 ISC</a>
+        <a href="#tool"    class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">자가진단</a>
+        <a href="#service" class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">시험서비스</a>
+        <a href="#process" class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">진행절차</a>
+        <a href="#faq"     class="px-3 py-2 rounded-lg hover:text-txt hover:bg-white/5 transition">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <span class="hidden md:inline font-mono text-[11px] text-faint tracking-wider"><b class="text-txt">KR</b>/EN</span>
+        <a href="#contact" class="cta hidden sm:inline-flex items-center gap-1.5 bg-brand text-white font-semibold text-[13.5px] px-4 py-2.5 rounded-xl hover:bg-branddp">
+          무료 컨설팅 신청
+          <iconify-icon icon="solar:arrow-right-up-linear" class="text-[16px]"></iconify-icon>
+        </a>
+        <button id="burger" aria-label="메뉴" class="lg:hidden w-10 h-10 grid place-items-center rounded-xl border border-white/10 text-txt">
+          <iconify-icon icon="solar:hamburger-menu-linear" class="text-[22px]"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div id="mmenu" class="lg:hidden max-w-7xl mx-auto px-4 sm:px-6 mt-2 hidden">
+    <div class="glass rounded-2xl p-2 grid text-[15px]">
+      <a href="#fields"  class="mm px-4 py-3 rounded-xl hover:bg-white/5">인증분야</a>
+      <a href="#why"     class="mm px-4 py-3 rounded-xl hover:bg-white/5">왜 ISC</a>
+      <a href="#tool"    class="mm px-4 py-3 rounded-xl hover:bg-white/5">1분 자가진단</a>
+      <a href="#service" class="mm px-4 py-3 rounded-xl hover:bg-white/5">시험서비스</a>
+      <a href="#process" class="mm px-4 py-3 rounded-xl hover:bg-white/5">진행절차</a>
+      <a href="#faq"     class="mm px-4 py-3 rounded-xl hover:bg-white/5">FAQ</a>
+      <a href="#contact" class="mm mt-1 px-4 py-3 rounded-xl bg-brand text-white text-center font-semibold">무료 컨설팅 신청</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="top" class="relative pt-32 lg:pt-36 pb-10 lg:pb-14 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-8 items-center">
+      <!-- copy -->
+      <div>
+        <span class="kicker reveal"><span class="ix">00</span> EMC · RF · SAFETY · SAR · TELECOM · RELIABILITY</span>
+        <h1 class="reveal mt-5 text-[2.35rem] sm:text-5xl lg:text-[3.6rem] font-bold tracking-tight leading-[1.12]" style="--i:1">
+          국제 표준 시험인증,<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandbr to-brand">성적서 발급까지</span> 함께합니다.
+        </h1>
+        <p class="reveal mt-6 text-[15.5px] md:text-lg text-muted leading-relaxed max-w-[54ch]" style="--i:2">
+          전기안전 · 전자파적합성(EMC) · 유무선통신 · 신뢰성 · 의료기기 · 해외인증.
+          어떤 시험이 필요한지 모르셔도 됩니다. 제품 사양서만 주시면
+          <b class="text-txt">필수 항목 · 예상 비용 · 일정</b>을 먼저 정리해 드립니다.
+        </p>
+        <div class="reveal mt-8 flex flex-wrap gap-3" style="--i:3">
+          <a href="#contact" class="cta inline-flex items-center gap-2 bg-brand text-white font-semibold text-[15px] px-7 py-4 rounded-2xl hover:bg-branddp shadow-[0_18px_40px_-16px_rgba(30,124,224,.9)]">
+            무료 견적 · 컨설팅 신청
+            <iconify-icon icon="solar:arrow-right-linear" class="arw text-[18px]"></iconify-icon>
+          </a>
+          <a href="#tool" class="cta inline-flex items-center gap-2 border border-white/12 text-txt font-medium text-[15px] px-6 py-4 rounded-2xl hover:bg-white/5">
+            <iconify-icon icon="solar:clipboard-check-linear" class="text-[18px] text-brandbr"></iconify-icon>
+            1분 시험 자가진단
+          </a>
+        </div>
+
+        <!-- stats folded into hero (스크롤 절약) -->
+        <div class="reveal mt-9 grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/8 rounded-2xl overflow-hidden border border-white/8" style="--i:4">
+          <div class="bg-ink2/80 px-4 py-4">
+            <div class="font-mono text-2xl font-semibold text-txt">6<span class="text-[13px] text-muted ml-1">분야</span></div>
+            <div class="text-[12px] text-faint mt-1 leading-snug">안전·EMC·통신·신뢰성·의료·해외 원스톱</div>
+          </div>
+          <div class="bg-ink2/80 px-4 py-4">
+            <div class="font-mono text-2xl font-semibold text-txt">24<span class="text-[13px] text-muted ml-1">h</span></div>
+            <div class="text-[12px] text-faint mt-1 leading-snug">영업일 기준 문의 회신</div>
+          </div>
+          <div class="bg-ink2/80 px-4 py-4">
+            <div class="font-mono text-2xl font-semibold text-txt">KOLAS</div>
+            <div class="text-[12px] text-faint mt-1 leading-snug">인정 기준 시험·성적서</div>
+          </div>
+          <div class="bg-ink2/80 px-4 py-4">
+            <div class="font-mono text-2xl font-semibold text-txt">1:1</div>
+            <div class="text-[12px] text-faint mt-1 leading-snug">접수~성적서 전담 매니저</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- signature: live radiated-emission scan -->
+      <div class="reveal lg:justify-self-end w-full" style="--i:2">
+        <div class="glass rounded-3xl p-4 sm:p-5 relative overflow-hidden floaty">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-[11px] tracking-widest text-muted flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brandbr blip"></span>RADIATED EMISSION SCAN
+            </span>
+            <span class="font-mono text-[10px] text-faint flex items-center gap-3">
+              <span class="flex items-center gap-1.5"><i class="w-2.5 h-[3px] bg-brandbr inline-block rounded"></i>MEASURED</span>
+              <span class="flex items-center gap-1.5"><i class="w-2.5 h-[3px] inline-block rounded" style="background:var(--limit)"></i>LIMIT</span>
+            </span>
+          </div>
+
+          <svg class="scope-svg w-full block" viewBox="0 0 520 300" preserveAspectRatio="none" role="img" aria-label="전자파 방출 스캔 그래프">
+            <defs>
+              <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#4BA0F5" stop-opacity=".30"/>
+                <stop offset="1" stop-color="#4BA0F5" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- grid -->
+            <g stroke="rgba(148,163,184,.14)" stroke-width="1">
+              <line x1="0" y1="60" x2="520" y2="60"/><line x1="0" y1="120" x2="520" y2="120"/>
+              <line x1="0" y1="180" x2="520" y2="180"/><line x1="0" y1="240" x2="520" y2="240"/>
+              <line x1="104" y1="0" x2="104" y2="300"/><line x1="208" y1="0" x2="208" y2="300"/>
+              <line x1="312" y1="0" x2="312" y2="300"/><line x1="416" y1="0" x2="416" y2="300"/>
+            </g>
+            <!-- CISPR-style stepped limit line -->
+            <path d="M0 118 L230 118 L230 96 L520 96" stroke="var(--limit)" stroke-width="1.6" fill="none" stroke-dasharray="6 5"/>
+            <!-- filled area -->
+            <path class="fill" d="M0 250 L26 244 L44 210 L60 250 L86 232 L104 168 L118 250 L140 236 L158 214 L176 250 L196 130 L212 176 L236 250 L262 226 L286 250 L310 150 L332 210 L356 250 L384 238 L408 190 L432 250 L462 232 L490 205 L520 246 L520 300 L0 300 Z"/>
+            <!-- measured trace -->
+            <path class="trace" d="M0 250 L26 244 L44 210 L60 250 L86 232 L104 168 L118 250 L140 236 L158 214 L176 250 L196 130 L212 176 L236 250 L262 226 L286 250 L310 150 L332 210 L356 250 L384 238 L408 190 L432 250 L462 232 L490 205 L520 246"/>
+            <!-- sweep cursor -->
+            <g class="sweep"><rect x="-1" y="0" width="2" height="300" fill="rgba(75,160,245,.55)"/></g>
+            <!-- peak markers -->
+            <circle class="peak p1" cx="196" cy="130" r="3.6"/><circle class="peak p2" cx="310" cy="150" r="3.6"/>
+          </svg>
+
+          <div class="flex items-center justify-between mt-3 font-mono text-[10.5px]">
+            <span class="text-faint">30MHz — 1GHz · QUASI-PEAK</span>
+            <span class="inline-flex items-center gap-1.5 text-emerald-300/90 bg-emerald-400/10 border border-emerald-400/25 px-2 py-1 rounded-lg">
+              <iconify-icon icon="solar:check-circle-bold"></iconify-icon>MARGIN OK
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- trust ticker -->
+    <div class="reveal tkwrap mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]" style="--i:5">
+      <div class="tkrow font-mono text-[12px] text-muted">
+        <!-- duplicated for seamless loop -->
+        <span class="tkset flex gap-10 pr-10">
+          <span>KC 안전확인</span><span>CISPR / EN 55032</span><span>FCC Part 15</span><span>CE / RED</span>
+          <span>IEC 60601</span><span>KC62133</span><span>IEC 62368</span><span>MIL-STD-810</span><span>KOLAS 협력</span>
+        </span>
+        <span class="tkset flex gap-10 pr-10" aria-hidden="true">
+          <span>KC 안전확인</span><span>CISPR / EN 55032</span><span>FCC Part 15</span><span>CE / RED</span>
+          <span>IEC 60601</span><span>KC62133</span><span>IEC 62368</span><span>MIL-STD-810</span><span>KOLAS 협력</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FIELDS (bento) ===================== -->
+<section id="fields" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="kicker"><span class="ix">01</span> BUSINESS AREA</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">인증분야</h2>
+      </div>
+      <p class="text-muted text-[15px] max-w-[42ch]">시험·인증 서비스를 ONE-STOP으로 제공합니다. 분야를 선택하면 상세 안내로 이동합니다.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-4 auto-rows-[1fr]">
+      <!-- featured wide -->
+      <a href="cert-emc.html" class="edge group glass md:col-span-3 rounded-3xl p-6 sm:p-7 flex flex-col" style="--i:0">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / EMC · RF</span>
+          <iconify-icon icon="solar:soundwave-linear" class="text-[30px] text-brandbr"></iconify-icon>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">전자파적합성 (EMC)</h3>
+        <p class="mt-2 text-muted text-[14.5px] leading-relaxed max-w-[38ch]">방출(Emission)·내성(Immunity) 시험과 전자파 적합성 평가. 전자·전기제품의 필수 관문입니다.</p>
+        <div class="mt-5 flex flex-wrap gap-2 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">CISPR 32</span>
+          <span class="px-2 py-1 rounded-md border border-white/10">EN 55035</span>
+          <span class="px-2 py-1 rounded-md border border-white/10">방출·내성</span>
+        </div>
+        <span class="mt-auto pt-6 inline-flex items-center gap-1.5 text-[14px] text-txt font-medium">
+          자세히 보기 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon>
+        </span>
+      </a>
+
+      <!-- telecom -->
+      <a href="cert-telecom.html" class="edge group glass md:col-span-3 rounded-3xl p-6 sm:p-7 flex flex-col" style="--i:1">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / RF · SAR</span>
+          <iconify-icon icon="solar:wi-fi-router-linear" class="text-[30px] text-brandbr"></iconify-icon>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">유무선통신</h3>
+        <p class="mt-2 text-muted text-[14.5px] leading-relaxed max-w-[38ch]">전파 적합성평가 · 무선설비 송수신 성능 · SAR(인체 전자파 흡수율) 대응.</p>
+        <div class="mt-5 flex flex-wrap gap-2 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">전파법</span>
+          <span class="px-2 py-1 rounded-md border border-white/10">RED</span>
+          <span class="px-2 py-1 rounded-md border border-white/10">SAR</span>
+        </div>
+        <span class="mt-auto pt-6 inline-flex items-center gap-1.5 text-[14px] text-txt font-medium">
+          자세히 보기 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon>
+        </span>
+      </a>
+
+      <!-- safety -->
+      <a href="cert-safety.html" class="edge group glass md:col-span-2 rounded-3xl p-6 flex flex-col" style="--i:2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / SAFETY</span>
+          <iconify-icon icon="solar:shield-check-linear" class="text-[26px] text-brandbr"></iconify-icon>
+        </div>
+        <h3 class="mt-5 text-xl font-bold">전기안전인증</h3>
+        <p class="mt-2 text-muted text-[14px] leading-relaxed">감전·화재 위험 평가 / KC 안전확인·안전인증</p>
+        <span class="mt-auto pt-5 inline-flex items-center gap-1.5 text-[13.5px] text-txt font-medium">자세히 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon></span>
+      </a>
+
+      <!-- reliability -->
+      <a href="cert-reliability.html" class="edge group glass md:col-span-2 rounded-3xl p-6 flex flex-col" style="--i:3">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / RELIABILITY</span>
+          <iconify-icon icon="solar:chart-2-linear" class="text-[26px] text-brandbr"></iconify-icon>
+        </div>
+        <h3 class="mt-5 text-xl font-bold">신뢰성</h3>
+        <p class="mt-2 text-muted text-[14px] leading-relaxed">진동·충격·온습도 / 내구성·수명 예측</p>
+        <span class="mt-auto pt-5 inline-flex items-center gap-1.5 text-[13.5px] text-txt font-medium">자세히 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon></span>
+      </a>
+
+      <!-- medical -->
+      <a href="cert-medical.html" class="edge group glass md:col-span-2 rounded-3xl p-6 flex flex-col" style="--i:4">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / MEDICAL</span>
+          <iconify-icon icon="solar:heart-pulse-linear" class="text-[26px] text-brandbr"></iconify-icon>
+        </div>
+        <h3 class="mt-5 text-xl font-bold">의료기기 (MFDS)</h3>
+        <p class="mt-2 text-muted text-[14px] leading-relaxed">의료기기 전기안전·EMC / IEC 60601</p>
+        <span class="mt-auto pt-5 inline-flex items-center gap-1.5 text-[13.5px] text-txt font-medium">자세히 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon></span>
+      </a>
+
+      <!-- overseas (wide) -->
+      <a href="cert-overseas.html" class="edge group glass md:col-span-6 rounded-3xl p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center gap-5 justify-between" style="--i:5">
+        <div>
+          <div class="flex items-center gap-3">
+            <iconify-icon icon="solar:global-linear" class="text-[26px] text-brandbr"></iconify-icon>
+            <span class="font-mono text-[11px] tracking-widest text-brandbr">FIELD / GLOBAL</span>
+          </div>
+          <h3 class="mt-4 text-xl font-bold">해외인증</h3>
+          <p class="mt-2 text-muted text-[14.5px] leading-relaxed max-w-[52ch]">CE · FCC · UL · CCC 등 수출 대상국 인증 연계. 중복 시험을 최소화하도록 국내외 인증을 함께 검토합니다.</p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="font-mono text-[11px] text-muted flex flex-wrap gap-2">
+            <span class="px-2 py-1 rounded-md border border-white/10">CE</span>
+            <span class="px-2 py-1 rounded-md border border-white/10">FCC</span>
+            <span class="px-2 py-1 rounded-md border border-white/10">UL</span>
+            <span class="px-2 py-1 rounded-md border border-white/10">CCC</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-[14px] text-txt font-medium whitespace-nowrap">자세히 보기 <iconify-icon icon="solar:arrow-right-linear" class="text-brandbr group-hover:translate-x-1 transition"></iconify-icon></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY (split) ===================== -->
+<section id="why" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+      <div class="reveal lg:sticky lg:top-28">
+        <span class="kicker"><span class="ix">02</span> WHY ISC</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.6rem] font-bold tracking-tight leading-[1.18]">
+          시험만 하지 않습니다.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandbr to-brand">인증 취득</span>이라는<br>목표까지 함께 갑니다.
+        </h2>
+        <p class="mt-5 text-muted text-[15px] leading-relaxed max-w-[42ch]">
+          ISC는 시험 항목 선정부터 성적서 발급, 인증 신청까지 전 과정을 하나의 창구에서 안내합니다.
+        </p>
+        <a href="#contact" class="cta mt-7 inline-flex items-center gap-2 bg-white/5 border border-white/12 text-txt font-medium text-[14.5px] px-5 py-3.5 rounded-2xl hover:bg-white/10">
+          담당자와 상담하기 <iconify-icon icon="solar:arrow-right-linear" class="arw text-brandbr text-[17px]"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="reveal glass rounded-2xl p-6" style="--i:0">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">SCOPE</span>
+          <h3 class="mt-4 text-lg font-bold">시험 항목 선정부터</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">제품 사양서만 주시면 필수 항목과 예상 비용을 먼저 정리해 드립니다.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6" style="--i:1">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">PRE-TEST</span>
+          <h3 class="mt-4 text-lg font-bold">불합격 리스크 사전 검토</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">본시험 전 예비시험으로 취약 항목을 확인해 재시험 비용·일정 지연을 줄입니다.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6" style="--i:2">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">GLOBAL</span>
+          <h3 class="mt-4 text-lg font-bold">국내외 인증 동시 대응</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">KC·CE·FCC·UL 등 수출 대상국 인증을 함께 검토해 중복 시험을 최소화합니다.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6" style="--i:3">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">KOLAS</span>
+          <h3 class="mt-4 text-lg font-bold">공인 성적서 발급</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">KOLAS 인정 기준에 따라 시험을 수행하고, 인증 신청에 사용 가능한 성적서를 발급합니다.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6" style="--i:4">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">1:1</span>
+          <h3 class="mt-4 text-lg font-bold">전담 매니저 배정</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">접수부터 성적서 수령까지 담당자 1인이 전 과정을 안내합니다.</p>
+        </div>
+        <div class="reveal glass rounded-2xl p-6" style="--i:5">
+          <span class="font-mono text-[11px] tracking-widest text-brandbr">SECURITY</span>
+          <h3 class="mt-4 text-lg font-bold">기술자료 보안</h3>
+          <p class="mt-2 text-muted text-[14px] leading-relaxed">요청 시 NDA를 체결하며, 전달받은 도면·사양서는 담당자 외 접근을 제한합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TOOL: 자가진단 ===================== -->
+<section id="tool" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal glass rounded-[28px] p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(30,124,224,.22),transparent 65%)"></div>
+
+      <div class="flex flex-wrap items-end justify-between gap-3 mb-7 relative">
+        <div>
+          <span class="kicker"><span class="ix">04</span> SELF CHECK</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">1분 시험 자가진단</h2>
+        </div>
+        <p class="text-muted text-[14.5px] max-w-[46ch]">제품군·판매지역·전원방식을 선택하면 필요할 가능성이 높은 시험 항목과 표준을 정리해 드립니다.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-[1fr_.9fr] gap-6 relative">
+        <!-- form -->
+        <div class="space-y-6">
+          <div>
+            <label class="font-mono text-[11px] tracking-widest text-muted">1. 제품군</label>
+            <div class="opts mt-3 flex flex-wrap gap-2" data-group="category">
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="home">가전·생활전자</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="it">IT·사무기기</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="wireless">무선·통신기기</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="industrial">산업·전력기기</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="medical">의료기기</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="battery">배터리·전원장치</button>
+            </div>
+          </div>
+          <div>
+            <label class="font-mono text-[11px] tracking-widest text-muted">2. 판매 대상 지역</label>
+            <div class="opts mt-3 flex flex-wrap gap-2" data-group="region">
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="kr">국내 (KC)</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="eu">유럽 (CE)</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="us">미국 (FCC/UL)</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="multi">다국가 수출</button>
+            </div>
+          </div>
+          <div>
+            <label class="font-mono text-[11px] tracking-widest text-muted">3. 전원 방식</label>
+            <div class="opts mt-3 flex flex-wrap gap-2" data-group="power">
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="ac">AC 전원</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="battery">배터리</button>
+              <button class="chip px-3.5 py-2.5 rounded-xl border border-white/12 text-[13.5px] text-txt" aria-pressed="false" data-v="both">AC + 배터리</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- output -->
+        <div class="rounded-2xl border border-white/10 bg-ink2/70 p-6 flex flex-col">
+          <span class="font-mono text-[10.5px] tracking-widest text-brandbr">ESTIMATED SCOPE</span>
+          <h3 class="mt-2 text-lg font-bold">예상 시험 항목</h3>
+          <div id="result" class="mt-4 flex-1">
+            <div class="text-faint text-[13.5px] font-mono">▮ 왼쪽에서 항목을 선택하면 결과가 표시됩니다.</div>
+          </div>
+          <a id="tool-cta" href="#contact" style="display:none" class="cta mt-5 inline-flex items-center justify-center gap-2 bg-brand text-white font-semibold text-[14px] px-5 py-3.5 rounded-xl hover:bg-branddp">
+            이 조건으로 정식 견적 받기 <iconify-icon icon="solar:arrow-right-linear" class="arw"></iconify-icon>
+          </a>
+          <p class="mt-4 text-[11.5px] text-faint leading-relaxed">일반 기준에 따른 참고 정보이며, 제품 구조·기능·판매 요건에 따라 실제 필요한 시험은 달라질 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICE (spec sheet) ===================== -->
+<section id="service" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-8">
+      <span class="kicker"><span class="ix">03</span> TEST SERVICES</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">시험 서비스</h2>
+      <p class="mt-3 text-muted text-[15px]">제품군별 주요 시험 항목입니다. 목록에 없는 항목도 문의 주세요.</p>
+    </div>
+
+    <div class="reveal glass rounded-3xl overflow-hidden">
+      <div class="hidden md:grid grid-cols-[.9fr_2fr_1.2fr] gap-6 px-6 py-3 border-b border-white/10 font-mono text-[11px] tracking-widest text-faint">
+        <div>CATEGORY</div><div>주요 시험 항목</div><div>관련 표준</div>
+      </div>
+      <!-- row -->
+      <div class="grid md:grid-cols-[.9fr_2fr_1.2fr] gap-3 md:gap-6 px-6 py-6 border-b border-white/8 items-start hover:bg-white/[.02] transition">
+        <div class="font-bold">전자파 · 통신<div class="font-mono text-[11px] text-faint font-normal mt-1">EMC / RF / SAR</div></div>
+        <ul class="text-muted text-[14px] grid sm:grid-cols-2 gap-x-6 gap-y-1.5 list-disc pl-4 marker:text-brandbr">
+          <li>EMC 방출·내성 시험</li><li>유무선 통신기기 적합성평가</li><li>SAR (전자파 인체흡수율)</li><li>무선설비 송·수신 성능</li>
+        </ul>
+        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">CISPR 32</span><span class="px-2 py-1 rounded-md border border-white/10">EN 55035</span><span class="px-2 py-1 rounded-md border border-white/10">FCC Part 15</span><span class="px-2 py-1 rounded-md border border-white/10">RED</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[.9fr_2fr_1.2fr] gap-3 md:gap-6 px-6 py-6 border-b border-white/8 items-start hover:bg-white/[.02] transition">
+        <div class="font-bold">전기 · 안전<div class="font-mono text-[11px] text-faint font-normal mt-1">SAFETY / KC</div></div>
+        <ul class="text-muted text-[14px] grid sm:grid-cols-2 gap-x-6 gap-y-1.5 list-disc pl-4 marker:text-brandbr">
+          <li>전기안전 시험 (감전·화재)</li><li>KC 안전확인·안전인증</li><li>리튬배터리 안전성</li><li>RoHS · REACH 유해물질</li>
+        </ul>
+        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">KC</span><span class="px-2 py-1 rounded-md border border-white/10">IEC 62368</span><span class="px-2 py-1 rounded-md border border-white/10">KC62133</span><span class="px-2 py-1 rounded-md border border-white/10">RoHS</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[.9fr_2fr_1.2fr] gap-3 md:gap-6 px-6 py-6 border-b border-white/8 items-start hover:bg-white/[.02] transition">
+        <div class="font-bold">신뢰성 · 환경<div class="font-mono text-[11px] text-faint font-normal mt-1">RELIABILITY</div></div>
+        <ul class="text-muted text-[14px] grid sm:grid-cols-2 gap-x-6 gap-y-1.5 list-disc pl-4 marker:text-brandbr">
+          <li>진동 · 충격 시험</li><li>온습도 사이클 / 열충격</li><li>염수분무 (내부식성)</li><li>내구성 · 수명 예측</li>
+        </ul>
+        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">IEC 60068</span><span class="px-2 py-1 rounded-md border border-white/10">MIL-STD-810</span><span class="px-2 py-1 rounded-md border border-white/10">ISO 9227</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-[.9fr_2fr_1.2fr] gap-3 md:gap-6 px-6 py-6 items-start hover:bg-white/[.02] transition">
+        <div class="font-bold">인증 컨설팅<div class="font-mono text-[11px] text-faint font-normal mt-1">CONSULTING</div></div>
+        <ul class="text-muted text-[14px] grid sm:grid-cols-2 gap-x-6 gap-y-1.5 list-disc pl-4 marker:text-brandbr">
+          <li>인증 로드맵·비용 산출</li><li>기술문서·사용설명서 작성 지원</li><li>공장심사 대응</li><li>해외 인증기관 연계</li>
+        </ul>
+        <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-muted">
+          <span class="px-2 py-1 rounded-md border border-white/10">CE</span><span class="px-2 py-1 rounded-md border border-white/10">FCC</span><span class="px-2 py-1 rounded-md border border-white/10">UL</span><span class="px-2 py-1 rounded-md border border-white/10">MFDS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS (timeline) ===================== -->
+<section id="process" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-9">
+      <span class="kicker"><span class="ix">05</span> PROCESS</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">진행 절차</h2>
+      <p class="mt-3 text-muted text-[15px]">시험 항목과 시료 준비 상황에 따라 소요 기간은 달라집니다.</p>
+    </div>
+
+    <div class="reveal relative">
+      <div class="hidden lg:block absolute left-0 right-0 top-[26px] h-px bg-gradient-to-r from-transparent via-white/12 to-transparent"></div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="glass rounded-2xl p-5 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/40 grid place-items-center font-mono font-semibold text-brandbr">01</div>
+          <h4 class="mt-4 font-bold">문의 · 상담</h4>
+          <p class="mt-1.5 text-muted text-[13.5px] leading-relaxed">제품 사양서 접수 후 필요 시험 항목 안내</p>
+        </div>
+        <div class="glass rounded-2xl p-5 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/40 grid place-items-center font-mono font-semibold text-brandbr">02</div>
+          <h4 class="mt-4 font-bold">견적 제시</h4>
+          <p class="mt-1.5 text-muted text-[13.5px] leading-relaxed">항목별 비용·기간을 문서로 제공</p>
+        </div>
+        <div class="glass rounded-2xl p-5 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/40 grid place-items-center font-mono font-semibold text-brandbr">03</div>
+          <h4 class="mt-4 font-bold">시료 접수</h4>
+          <p class="mt-1.5 text-muted text-[13.5px] leading-relaxed">시료 수령 및 예비시험 실시</p>
+        </div>
+        <div class="glass rounded-2xl p-5 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand/15 border border-brand/40 grid place-items-center font-mono font-semibold text-brandbr">04</div>
+          <h4 class="mt-4 font-bold">본시험</h4>
+          <p class="mt-1.5 text-muted text-[13.5px] leading-relaxed">공인시험소에서 정식 시험 수행</p>
+        </div>
+        <div class="glass rounded-2xl p-5 relative ring-1 ring-brand/30">
+          <div class="w-10 h-10 rounded-xl bg-brand border border-brand grid place-items-center font-mono font-semibold text-white">05</div>
+          <h4 class="mt-4 font-bold">성적서 발급</h4>
+          <p class="mt-1.5 text-muted text-[13.5px] leading-relaxed">성적서 전달 및 인증 신청 지원</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- certification marks -->
+    <div class="reveal mt-12 pt-8 border-t border-white/10">
+      <span class="kicker mb-4"><span class="ix">·</span> CERTIFICATION MARKS</span>
+      <div class="mt-4 flex flex-wrap gap-2.5">
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">KC</b>안전확인·안전인증</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">KCC</b>적합성평가</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">CE</b>유럽</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">FCC</b>미국</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">UL</b>미국</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">MFDS</b>의료기기</span>
+        <span class="glass rounded-xl px-4 py-2.5 text-[13px]"><b class="font-mono text-brandbr mr-1.5">KOLAS</b>공인성적서</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="faq" class="relative py-16 sm:py-20">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-8 text-center">
+      <span class="kicker justify-center"><span class="ix">06</span> FAQ</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">자주 묻는 질문</h2>
+    </div>
+
+    <div class="reveal space-y-3">
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q1</span>
+          <span class="flex-1 font-semibold text-[15px]">어떤 시험이 필요한지 몰라도 문의할 수 있나요?</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">네. 대부분의 고객사가 그 단계에서 연락 주십니다. 제품 사진과 간단한 사양(전원 방식, 사용 환경, 판매 국가)만 알려주시면 필요한 시험 항목과 예상 비용을 무료로 정리해 드립니다.</p></div>
+      </div>
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q2</span>
+          <span class="flex-1 font-semibold text-[15px]">비용은 어떻게 산정되나요?</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">시험 항목 수, 시료 개수, 제품 복잡도에 따라 달라집니다. 정확한 금액은 제품 사양서를 확인한 후 견적서로 안내드리며, 상담 및 견적 산출에는 비용이 발생하지 않습니다.</p></div>
+      </div>
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q3</span>
+          <span class="flex-1 font-semibold text-[15px]">시험에 불합격하면 어떻게 되나요?</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">본시험 전 예비시험을 권장하는 이유가 이것입니다. 예비시험에서 결함을 발견하면 설계 보완 후 본시험에 들어가므로 재시험 비용을 줄일 수 있습니다. 불합격 시 원인 분석과 개선 방향을 함께 안내해 드립니다.</p></div>
+      </div>
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q4</span>
+          <span class="flex-1 font-semibold text-[15px]">발급된 성적서는 어디에 사용할 수 있나요?</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">KOLAS 인정 시험기관에서 발급된 성적서는 국내 인증 신청 및 공공기관 납품 등에 사용 가능합니다. 다만 시험 목적과 제출처에 따라 필요한 성적서 종류가 다르므로, 상담 시 용도를 알려주시면 정확히 확인해 드립니다.</p></div>
+      </div>
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q5</span>
+          <span class="flex-1 font-semibold text-[15px]">기술자료 유출이 걱정됩니다.</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">요청하시면 프로젝트 착수 전 비밀유지계약(NDA)을 체결합니다. 전달받은 도면과 사양서는 담당 매니저 외 접근을 제한하며, 프로젝트 종료 후 요청 시 자료를 파기합니다. 초기 문의 단계에서는 상세 도면 없이 개략 사양만으로도 상담이 가능합니다.</p></div>
+      </div>
+      <div class="faq-item glass rounded-2xl overflow-hidden">
+        <button class="faq-q w-full flex items-center gap-4 text-left px-5 sm:px-6 py-5">
+          <span class="font-mono text-brandbr text-[13px]">Q6</span>
+          <span class="flex-1 font-semibold text-[15px]">정부 지원을 받을 수 있나요?</span>
+          <iconify-icon icon="solar:add-circle-linear" class="pm text-[22px] text-muted shrink-0"></iconify-icon>
+        </button>
+        <div class="faq-a"><p class="px-5 sm:px-6 pb-5 text-muted text-[14px] leading-relaxed">중소기업 대상 인증비 지원사업이 지자체·중소벤처기업부 등에서 운영되고 있습니다. 다만 사업별로 대상 요건과 접수 기간이 다르므로, 해당 여부를 검토해 드리고 신청 서류 작성도 지원합니다.</p></div>
+      </div>
+    </div>
+
+    <!-- blog cta -->
+    <div class="reveal mt-8 glass rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h3 class="font-bold text-[16px]">더 많은 시험·인증 사례가 궁금하신가요?</h3>
+        <p class="text-muted text-[14px] mt-1">실제 진행 사례와 상세 정보를 네이버 블로그에서 확인하실 수 있습니다.</p>
+      </div>
+      <a href="https://blog.naver.com/iscerti" target="_blank" rel="noopener" class="cta shrink-0 inline-flex items-center gap-2 bg-[#03C75A] text-white font-semibold text-[14px] px-5 py-3 rounded-xl">
+        <b class="font-black">N</b> 네이버 블로그 바로가기
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="relative py-16 sm:py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal mb-9">
+      <span class="kicker"><span class="ix">07</span> CONTACT</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">컨설팅 문의</h2>
+      <p class="mt-3 text-muted text-[15px]">영업일 기준 24시간 내에 담당자가 연락드립니다.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-6">
+      <!-- info + brand plate -->
+      <div class="reveal space-y-4">
+        <div class="glass rounded-2xl p-6">
+          <h3 class="font-bold text-[16px] mb-4">직접 연락주셔도 됩니다</h3>
+          <dl class="text-[14px] divide-y divide-white/8">
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">담당</dt><dd class="font-semibold">지명근 팀장</dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">전화</dt><dd><a href="tel:01046464055" class="text-brandbr hover:underline">010-4646-4055</a></dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">팩스</dt><dd class="text-muted">050-5350-5350</dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">이메일</dt><dd><a href="mailto:mkji@iscerti.com" class="text-brandbr hover:underline">mkji@iscerti.com</a></dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">홈페이지</dt><dd><a href="https://www.iscerti.com" target="_blank" rel="noopener" class="text-brandbr hover:underline">www.iscerti.com</a></dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">주소</dt><dd class="text-muted">경기도 용인시 기흥구 중부대로 184, A동 622-2호</dd></div>
+            <div class="flex gap-4 py-2.5"><dt class="w-16 text-faint font-mono text-[12px] shrink-0">운영</dt><dd class="text-muted">평일 09:00 – 18:00</dd></div>
+          </dl>
+        </div>
+        <!-- real logo asset used as a physical signage plate -->
+        <div class="rounded-2xl overflow-hidden border border-white/10 bg-white">
+          <img src="assets/isc-logo-3d.png" alt="ISC — International Standard Certification 로고" loading="lazy" decoding="async" class="w-full aspect-[16/9] object-cover object-center">
+        </div>
+      </div>
+
+      <!-- form -->
+      <div class="reveal">
+        <form id="quoteForm" action="#" method="POST" class="glass rounded-2xl p-6 sm:p-7 space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block"><span class="text-[13px] text-muted">회사명 <span class="text-brandbr">*</span></span>
+              <input name="company" required placeholder="(주)ISC" class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt placeholder:text-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition"></label>
+            <label class="block"><span class="text-[13px] text-muted">성함(담당자) <span class="text-brandbr">*</span></span>
+              <input name="name" required placeholder="홍길동" class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt placeholder:text-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition"></label>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block"><span class="text-[13px] text-muted">연락처 <span class="text-brandbr">*</span></span>
+              <input name="phone" required placeholder="010-0000-0000" class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt placeholder:text-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition"></label>
+            <label class="block"><span class="text-[13px] text-muted">이메일 <span class="text-brandbr">*</span></span>
+              <input name="email" type="email" required placeholder="name@company.com" class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt placeholder:text-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition"></label>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block"><span class="text-[13px] text-muted">문의유형 <span class="text-brandbr">*</span></span>
+              <select name="type" required class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition">
+                <option value="">선택해 주세요</option><option>시험 견적 문의</option><option>인증 컨설팅 문의</option><option>신청서 양식 요청</option><option>기타 문의</option>
+              </select></label>
+            <label class="block"><span class="text-[13px] text-muted">관심 인증분야 <span class="text-brandbr">*</span></span>
+              <select name="field" id="fieldSelect" required class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition">
+                <option value="">선택해 주세요</option><option>전기 안전인증</option><option>전자파적합성(EMC)</option><option>유·무선통신</option><option>신뢰성</option><option>의료기기</option><option>해외인증</option>
+              </select></label>
+          </div>
+          <label class="block"><span class="text-[13px] text-muted">문의 내용</span>
+            <textarea name="message" rows="4" placeholder="제품군, 판매 국가, 일정 등을 적어주시면 더 정확히 안내드립니다." class="mt-1.5 w-full bg-ink2/70 border border-white/12 rounded-xl px-4 py-3 text-[14px] text-txt placeholder:text-faint focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 transition resize-none"></textarea></label>
+
+          <div class="flex items-start gap-2 text-[12.5px] text-amber-200/80 bg-amber-400/8 border border-amber-400/20 rounded-xl px-4 py-3">
+            <iconify-icon icon="solar:danger-triangle-linear" class="text-[18px] mt-0.5 shrink-0"></iconify-icon>
+            <span>주민등록번호 등 고유식별정보·민감정보는 입력하지 말아 주세요. 상세 도면 등 기술자료는 NDA 체결 후 별도 경로로 전달해 주시기 바랍니다.</span>
+          </div>
+
+          <label class="flex items-start gap-3 text-[12.5px] text-muted leading-relaxed cursor-pointer">
+            <input type="checkbox" required class="mt-1 w-4 h-4 accent-[#1E7CE0] shrink-0">
+            <span>개인정보 수집·이용 및 <b class="text-txt">국외 이전에 동의</b>합니다. (필수) — 수집: 회사명·담당자·연락처·이메일·문의내용 / 목적: 문의 회신·상담 / 보유: 처리 후 1년(요청 시 즉시 파기). 자세한 내용은 <a href="privacy.html" class="text-brandbr underline">개인정보처리방침</a>에서 확인하실 수 있습니다.</span>
+          </label>
+
+          <button type="submit" class="cta w-full inline-flex items-center justify-center gap-2 bg-brand text-white font-semibold text-[15px] px-6 py-4 rounded-xl hover:bg-branddp shadow-[0_18px_40px_-16px_rgba(30,124,224,.9)]">
+            문의 보내기 <iconify-icon icon="solar:arrow-right-linear" class="arw text-[18px]"></iconify-icon>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- directions -->
+    <div class="reveal mt-6">
+      <span class="kicker mb-4"><span class="ix">·</span> DIRECTIONS</span>
+      <div class="mt-4 glass rounded-2xl overflow-hidden">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="ISC 오시는 길" class="w-full h-[300px] block grayscale-[.2] contrast-[1.05]"
+          src="https://maps.google.com/maps?q=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%EC%A4%91%EB%B6%80%EB%8C%80%EB%A1%9C%20184&z=16&hl=ko&output=embed"></iframe>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-5 py-4 border-t border-white/10">
+          <div class="text-[14px]">경기도 용인시 기흥구 중부대로 184, A동 622-2호
+            <span class="block font-mono text-[11px] text-faint mt-0.5">ISC · International Standard Certification · 평일 09:00–18:00</span></div>
+          <a class="cta shrink-0 inline-flex items-center gap-2 bg-[#03C75A] text-white font-semibold text-[13.5px] px-4 py-2.5 rounded-xl" target="_blank" rel="noopener"
+            href="https://map.naver.com/p/search/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%9A%A9%EC%9D%B8%EC%8B%9C%20%EA%B8%B0%ED%9D%A5%EA%B5%AC%20%EC%A4%91%EB%B6%80%EB%8C%80%EB%A1%9C%20184">
+            <b class="font-black">N</b> 네이버 지도로 보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="relative border-t border-white/10 mt-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8">
+      <div class="max-w-sm">
+        <div class="flex items-center gap-3">
+          <span class="logo text-[22px]"><span class="ring"></span>ISC</span>
+          <img src="assets/isc-logo-var-02.jpg" alt="ISC 로고" loading="lazy" decoding="async" class="h-8 rounded-md bg-white px-1">
+        </div>
+        <p class="mt-4 text-muted text-[13.5px] leading-relaxed">International Standard Certification<br>전기안전 · 전자파 · 유무선통신 · 신뢰성 · 의료기기 · 해외인증 시험인증 컨설팅</p>
+      </div>
+      <div class="flex flex-wrap gap-x-8 gap-y-2 text-[14px]">
+        <a href="privacy.html" class="text-muted hover:text-txt transition">개인정보처리방침</a>
+        <a href="https://blog.naver.com/iscerti" target="_blank" rel="noopener" class="text-muted hover:text-txt transition">네이버 블로그</a>
+        <a href="#contact" class="text-muted hover:text-txt transition">문의하기</a>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-white/8 font-mono text-[12px] text-faint leading-relaxed">
+      <b class="text-muted">ISC (International Standard Certification)</b><br>
+      담당 : 지명근 팀장 · 010-4646-4055 (F. 050-5350-5350)<br>
+      경기도 용인시 기흥구 중부대로 184, A동 622-2호<br>
+      E. mkji@iscerti.com · H. www.iscerti.com · 개인정보 보호책임자 : 지명근 (mkji@iscerti.com)
+    </div>
+    <div class="mt-5 text-[12px] text-faint">© 2026 ISC (International Standard Certification). All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* ---- mobile menu ---- */
+const burger=document.getElementById('burger'), mmenu=document.getElementById('mmenu');
+burger.addEventListener('click',()=>mmenu.classList.toggle('hidden'));
+mmenu.querySelectorAll('.mm').forEach(a=>a.addEventListener('click',()=>mmenu.classList.add('hidden')));
+
+/* ---- scroll reveal (IntersectionObserver) ---- */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- pointer glow on bento cards ---- */
+document.querySelectorAll('.edge').forEach(el=>{
+  el.addEventListener('pointermove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ---- FAQ accordion ---- */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement, a=item.querySelector('.faq-a'), open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+
+/* ---- 자가진단 로직 ---- */
+const sel={category:null,region:null,power:null};
+const LABEL={
+  category:{home:'가전·생활전자',it:'IT·사무기기',wireless:'무선·통신기기',industrial:'산업·전력기기',medical:'의료기기',battery:'배터리·전원장치'},
+  region:{kr:'국내 (KC)',eu:'유럽 (CE)',us:'미국 (FCC/UL)',multi:'다국가 수출'}
+};
+document.querySelectorAll('.opts').forEach(group=>{
+  const key=group.dataset.group;
+  group.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      group.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+      chip.setAttribute('aria-pressed','true');
+      sel[key]=chip.dataset.v; renderResult();
+    });
+  });
+});
+function renderResult(){
+  const out=document.getElementById('result'), cta=document.getElementById('tool-cta');
+  if(!sel.category||!sel.region||!sel.power){
+    out.innerHTML='<div class="text-faint text-[13.5px] font-mono">▮ 왼쪽에서 항목을 선택하면 결과가 표시됩니다.</div>';
+    cta.style.display='none'; return;
+  }
+  const tests=new Set(), stds=new Set();
+  tests.add('전자파적합성(EMC) 방출·내성');
+  if(sel.category!=='wireless') tests.add('전기안전 시험');
+  if(sel.category==='wireless'){tests.add('전파 적합성평가(무선)');tests.add('SAR (해당 시)');}
+  if(sel.category==='battery'||sel.power==='battery'||sel.power==='both'){tests.add('리튬배터리 안전성');stds.add('KC62133');}
+  if(sel.category==='industrial'){tests.add('신뢰성(진동·온습도) 검토');}
+  if(sel.category==='medical'){tests.add('의료기기 전기안전·EMC');stds.add('IEC 60601');}
+  if(sel.region==='kr'||sel.region==='multi'){stds.add('KC');stds.add('KCC');}
+  if(sel.region==='eu'||sel.region==='multi'){stds.add('CE');stds.add('EN 55032');if(sel.category==='wireless')stds.add('RED');}
+  if(sel.region==='us'||sel.region==='multi'){stds.add('FCC Part 15');stds.add('UL');}
+  if(sel.category!=='medical'&&sel.category!=='wireless'){stds.add('IEC 62368');}
+
+  const chips=(arr,mono)=>[...arr].map(t=>`<span class="px-2.5 py-1.5 rounded-lg ${mono?'font-mono text-[11.5px]':'text-[12.5px]'} border border-white/12 bg-white/[.03]">${t}</span>`).join('');
+  out.innerHTML=`
+    <div class="mb-4">
+      <div class="font-mono text-[10.5px] tracking-widest text-faint mb-2">선택 조건</div>
+      <div class="flex flex-wrap gap-1.5">
+        <span class="px-2.5 py-1.5 rounded-lg text-[12.5px] bg-brand/15 border border-brand/40 text-brandbr">${LABEL.category[sel.category]}</span>
+        <span class="px-2.5 py-1.5 rounded-lg text-[12.5px] bg-brand/15 border border-brand/40 text-brandbr">${LABEL.region[sel.region]}</span>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="font-mono text-[10.5px] tracking-widest text-faint mb-2">예상 시험 항목</div>
+      <div class="flex flex-wrap gap-1.5">${chips(tests,false)}</div>
+    </div>
+    <div>
+      <div class="font-mono text-[10.5px] tracking-widest text-faint mb-2">관련 표준</div>
+      <div class="flex flex-wrap gap-1.5">${chips(stds,true)}</div>
+    </div>`;
+  cta.style.display='inline-flex';
+}
+
+/* ---- 폼 제출 (엔드포인트 연동 전 임시) ---- */
+document.getElementById('quoteForm').addEventListener('submit',function(e){
+  if(this.getAttribute('action')==='#'){
+    e.preventDefault();
+    alert('문의가 준비되었습니다. 폼 연동(Google Form/Formspree) 후 실제 전송이 활성화됩니다.\n급하신 경우 010-4646-4055 또는 mkji@iscerti.com 으로 연락 주세요.');
+  }
+});
+
+/* ---- 자가진단 → 문의폼 관심분야 자동 매핑 ---- */
+document.getElementById('tool-cta').addEventListener('click',()=>{
+  const map={home:'전기 안전인증',it:'전기 안전인증',wireless:'유·무선통신',industrial:'신뢰성',medical:'의료기기',battery:'전기 안전인증'};
+  const fs=document.getElementById('fieldSelect');
+  if(sel.category&&map[sel.category]){[...fs.options].forEach(o=>{if(o.text===map[sel.category])fs.value=o.value;});}
+});
+</script>
+</body>
+</html>
